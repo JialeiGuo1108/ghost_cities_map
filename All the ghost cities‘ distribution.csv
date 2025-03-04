@@ -1,0 +1,443 @@
+old_cityID,X,Y,country,state,city
+22,131.0640728,49.00451993,Russia,Jewish Autonomous Oblast,Obluchye
+67,129.3866241,48.23162981,China,Heilongjiang,Yichun
+193,76.95356215,62.98429277,Russia,Yamalo-Nenets Autonomous Okrug,Vyngapurovskiy
+263,37.64396927,37.78274333,T¨¹rkiye,Ad?yaman,G?lba??
+297,75.56498566,26.81453009,India,Rajasthan,Bagru
+333,22.79918365,53.40376572,Poland,Podlaskie Voivodeship,Mo¨½ki
+354,14.2107263,37.29994761,Italy,Sicily,Mazzarino
+363,-94.94423693,45.26596143,United States,Minnesota,Spicer
+393,83.59991326,45.93667017,China,Xinjiang,Tacheng Prefecture
+407,-8.570694343,40.76134973,Portugal,Aveiro District,Estarreja
+451,128.9178971,44.47101372,China,Heilongjiang,Mudanjiang
+461,128.5007155,43.29788403,China,Jilin,Yanbian Korean Autonomous Prefecture
+469,54.05581942,29.13051884,Iran,Fars Province,Estahban
+566,57.4180289,48.430953,Kazakhstan,Aktobe Region,Vakhtovyy Poselok Neftyanikov
+580,-113.5851738,52.67579962,Canada,Alberta,Ponoka
+587,-95.05046791,46.91514514,United States,Minnesota,Lake Itasca
+644,-95.57539159,46.59407955,United States,Minnesota,Perham
+656,-68.84974595,47.65080254,Canada,Quebec,T¨¦miscouata-sur-le-Lac
+657,13.6419421,42.01610486,Italy,Abruzzo,
+674,176.7112541,-38.07846387,New Zealand,Bay of Plenty,Kawerau
+683,105.9235031,37.98716977,China,Ningxia,Wuzhong
+749,-40.08761764,-7.885925755,Brazil,State of Pernambuco,Ouricuri
+759,39.16489362,53.26032208,Russia,Lipetsk Oblast,Dankov
+779,-82.82779988,42.17161116,Canada,Ontario,Essex
+792,129.4302483,47.41244043,China,Heilongjiang,Yichun
+799,14.94907784,36.82316281,Italy,Sicily,Rosolini
+814,-95.11495534,43.86902525,United States,Minnesota,Windom
+822,78.52560717,50.75179195,Kazakhstan,Abay Region,Kurchatov
+836,-96.63487399,45.21682329,United States,South Dakota,Milbank
+884,-119.5508126,49.17318648,Canada,British Columbia,Oliver
+944,-114.9193873,52.37588783,Canada,Alberta,Rocky Mountain House
+1001,39.7543545,38.26966161,T¨¹rkiye,Diyarbak?r,Ergani
+1096,-2.757696508,48.17373002,France,Brittany,Loud¨¦ac
+1143,-113.9553204,52.02235437,Canada,Alberta,Innisfail
+1193,26.64588088,50.33568893,Ukraine,Khmelnytskyi Oblast,Netishyn
+1228,-112.7135752,52.32124972,Canada,Alberta,Stettler
+1253,23.5033561,53.40433593,Poland,Podlaskie Voivodeship,Majewo
+1265,-3.972426919,37.71348643,Spain,Andalusia,Martos
+1279,-66.8125644,-28.55806349,Argentina,La Rioja Province,Aimogasta
+1299,121.6722696,41.04710647,China,Liaoning,Panjin
+1334,119.604821,45.4121371,China,Inner Mongolia,Tongliao
+1350,-2.15395563,39.20360474,Spain,Castile-La Mancha,La Roda
+1356,-98.27878236,30.58421217,United States,Texas,Meadowlakes
+1360,5.11001301,44.10761601,France,Provence-Alpes-C?te d'Azur,Mod¨¨ne
+1375,88.85853277,43.15254954,China,Xinjiang,Turpan
+1402,-115.6745882,54.13674276,Canada,Alberta,Whitecourt
+1473,102.8591833,36.50576702,China,Gansu,Lanzhou
+1493,40.73178782,51.11324454,Russia,Voronezh Oblast,Talovaya
+1557,-97.10949888,43.99986791,United States,South Dakota,Madison
+1562,59.10439913,37.44460182,Iran,Razavi Khorasan Province,Dargaz
+1575,-99.09947268,38.18156811,United States,Kansas,Larned
+1585,15.38264665,41.68501111,Italy,Apulia,San Severo
+1607,-4.909533804,41.31113421,Spain,Castile and Le¨®n,Medina del Campo
+1612,75.22949431,30.26584953,India,Punjab,Rampura Phul
+1615,128.8282855,47.84958276,China,Heilongjiang,Yichun
+1620,-80.75252506,36.7538532,United States,Virginia,Hillsville
+1621,-94.37785447,42.01827965,United States,Iowa,Jefferson
+1657,128.9107429,43.11042164,China,Jilin,Yanbian Korean Autonomous Prefecture
+1694,-93.26729199,42.51929426,United States,Iowa,Iowa Falls
+1703,-81.77200713,34.00830011,United States,South Carolina,Saluda
+1707,-76.01791844,44.89746618,Canada,Ontario,Smiths Falls
+1730,-110.5719184,45.65723098,United States,Montana,Livingston
+1799,85.86945745,47.43402937,China,Xinjiang,Altay Prefecture
+1825,125.6176267,45.71601175,China,Heilongjiang,Daqing
+1830,-123.8359492,45.4608391,United States,Oregon,Tillamook
+1851,-79.68526905,47.51383009,Canada,Ontario,Temiskaming Shores
+1854,-99.37227567,40.4414093,United States,Nebraska,Holdrege
+1861,-2.5986044,39.26984417,Spain,Castile-La Mancha,Villarrobledo
+1865,112.7263726,33.44454821,China,Henan,Nanyang
+1888,-123.410312,47.00237166,United States,Washington,Elma
+1905,-94.22797629,43.07371422,United States,Iowa,Algona
+1907,-3.370941208,39.00370243,Spain,Castile-La Mancha,Manzanares
+1909,128.1702791,46.91726072,China,Heilongjiang,Yichun
+1918,-38.2157756,-9.44644448,Brazil,State of Bahia,Paulo Afonso
+1972,-84.7654657,43.82499228,United States,Michigan,Clare
+1988,-36.34597064,-6.867366762,Brazil,State of Para¨ªba,
+2040,14.01865638,42.66273007,Italy,Abruzzo,Roseto degli Abruzzi
+2042,-80.5790901,33.1912535,United States,South Carolina,Saint George
+2053,6.336232018,43.38933561,France,Provence-Alpes-C?te d'Azur,Le Luc
+2074,70.87296088,22.80989504,India,Gujarat,Jambudiya
+2082,14.63200546,37.21126296,Italy,Sicily,Grammichele
+2159,14.51963985,37.21796943,Italy,Sicily,Caltagirone
+2178,119.633279,45.44602945,China,Inner Mongolia,Tongliao
+2220,110.3542024,39.12740221,China,Shaanxi,Yulin
+2242,-84.23026433,44.26415002,United States,Michigan,West Branch
+2245,-81.93799615,32.80484354,United States,Georgia,Perkins
+2264,-94.02581991,40.26899232,United States,Missouri,Bethany
+2305,-95.09714571,38.93280446,United States,Kansas,Eudora
+2306,-6.342841601,38.56140685,Spain,Extremadura,Villafranca de los Barros
+2369,14.83105689,37.78652542,Italy,Sicily,Bronte
+2405,-114.9853295,53.21615607,Canada,Alberta,Drayton Valley
+2432,35.59035287,31.75261976,Jordan,Balqa Governorate,Swemeh
+2492,12.22179393,45.02114171,Italy,Veneto,Porto Viro
+2516,-82.39968171,33.00492802,United States,Georgia,Louisville
+2529,76.76722296,52.24982838,Kazakhstan,Pavlodar Region,Leninskiy
+2559,109.8771658,41.79647738,China,Inner Mongolia,Baotou
+2563,122.883364,47.51232243,China,Heilongjiang,Qiqihar
+2602,117.7747329,37.96773893,China,Shandong,Binzhou
+2644,-120.7796068,50.10876722,Canada,British Columbia,Merritt
+2682,125.2695315,48.86970015,China,Heilongjiang,Heihe
+2809,78.62195094,12.67860522,India,Tamil Nadu,Vaniyambadi
+2815,-93.31188217,41.01644279,United States,Iowa,Chariton
+2948,3.074184688,43.21358552,France,Occitanie,Coursan
+2950,-113.3799078,52.97137068,Canada,Alberta,Wetaskiwin
+2955,-92.57218446,41.97549068,United States,Iowa,Tama
+2990,86.11462277,55.56870982,Russia,Kemerovo Oblast,Kemerovo
+3019,-90.15341159,41.44861222,United States,Illinois,Geneseo
+3050,-116.4268392,53.58518455,Canada,Alberta,Edson
+3053,-75.49886785,46.55036215,Canada,Quebec,Mont-Laurier
+3083,-82.39339655,34.44540907,United States,South Carolina,Honea Path
+3143,-93.78118623,41.03269466,United States,Iowa,Osceola
+3188,76.66560785,28.60254101,India,Haryana,Silana
+3189,14.56641209,37.10292129,Italy,Sicily,Mazzarrone
+3195,116.9744893,45.50933754,China,Inner Mongolia,Xilingol League
+3209,-1.123333058,39.50282344,Spain,Valencian Community,Requena
+3211,-77.3932492,34.54468704,United States,North Carolina,Sneads Ferry
+3224,-91.89174008,42.4666652,United States,Iowa,Independence
+3256,-65.59651087,-22.11011773,Argentina,Jujuy,La Quiaca
+3277,18.16485638,-32.77454711,South Africa,Western Cape,Velddrif
+3281,-95.24144696,38.28077247,United States,Kansas,Garnett
+3299,76.26745829,28.59484824,India,Haryana,Charkhi
+3321,-120.352305,42.19005073,United States,Oregon,Lakeview
+3351,99.64972156,56.09212087,Russia,Irkutsk Oblast,Chunskii
+3381,23.19103625,52.76554617,Poland,Podlaskie Voivodeship,Bielsk Podlaski
+3384,-94.34285639,38.25905369,United States,Missouri,Butler
+3399,-97.37517593,47.94918891,United States,North Dakota,Grand Forks Air Force Base
+3430,-85.50372402,39.35400272,United States,Indiana,Burney
+3434,-98.85433855,38.88452807,United States,Kansas,Russell
+3443,0.072577422,38.72771272,Spain,Valencian Community,Benissa
+3444,-81.14141417,33.31820637,United States,South Carolina,Denmark
+3470,103.528814,1.514735897,Malaysia,Johor,Pekan Nanas
+3510,27.43337415,52.21844429,Belarus,Brest Region,Mika?evi?y
+3516,72.5821028,49.71071143,Kazakhstan,Karaganda Region,Shakhtinsk
+3532,-77.98772925,34.74080428,United States,North Carolina,Wallace
+3551,-79.79414602,32.78426279,United States,South Carolina,Isle of Palms
+3559,-4.763705141,37.39048405,Spain,Andalusia,Puente Genil
+3567,-95.35833258,42.01504818,United States,Iowa,Denison
+3576,-76.61030916,36.07295039,United States,North Carolina,Edenton
+3577,-120.4242505,46.44579917,United States,Washington,Wapato
+3585,-90.66696936,42.06112879,United States,Iowa,Maquoketa
+3636,29.39192716,48.80651314,Ukraine,Vinnytsia Oblast,Haisyn
+3648,-1.886471327,37.25117972,Spain,Andalusia,Vera
+3650,-65.72140497,-21.43704829,Bolivia,Potosi Department,Tupiza
+3691,-100.8043729,36.39043476,United States,Texas,Perryton
+3725,-81.30360428,33.00515028,United States,South Carolina,Allendale
+3744,-95.86327904,46.81210523,United States,Minnesota,Detroit Lakes
+3768,-3.015637094,39.16167698,Spain,Castile-La Mancha,Tomelloso
+3769,-75.30322756,4.909633406,Colombia,Tolima,
+3827,-81.92384999,31.93876138,United States,Georgia,Glennville
+3893,129.392702,46.1718634,China,Heilongjiang,Harbin
+3939,109.3549452,40.57695701,China,Inner Mongolia,Bayannur
+3997,-97.4271351,38.14030799,United States,Kansas,Hesston
+4084,15.90912265,38.4523442,Italy,Calabria,Container Terminal
+4094,-2.28932929,37.34817044,Spain,Andalusia,Olula del R¨ªo
+4152,-80.9842001,46.64684572,Canada,Ontario,Greater Sudbury
+4172,-96.61185404,47.77376319,United States,Minnesota,Crookston
+4183,16.29797707,41.23135809,Italy,Apulia,Andria
+4223,22.6075825,51.45645461,Poland,Lublin Voivodeship,Lubart¨®w
+4229,-95.13274889,43.3855737,United States,Iowa,Okoboji
+4272,14.9111542,50.91253644,Poland,Lower Silesian Voivodeship,Bogatynia
+4297,-81.62163633,42.96271308,Canada,Ontario,Strathroy
+4326,-92.72444805,41.73456615,United States,Iowa,Oakland Acres
+4328,-88.15793936,40.30583502,United States,Illinois,Rantoul
+4343,-99.73952975,40.7685312,United States,Nebraska,Lexington
+4359,-94.36517344,41.05864728,United States,Iowa,Creston
+4364,131.8644069,47.29182201,China,Heilongjiang,Hegang
+4448,-78.41050072,35.44569906,United States,North Carolina,Four Oaks
+4455,12.09532113,42.42956058,Italy,Lazio,Viterbo
+4511,-122.7493292,45.91318492,United States,Washington,Woodland
+4520,12.67172288,38.07623238,Italy,Sicily,Custonaci
+4542,-94.87637236,38.56238014,United States,Kansas,Paola
+4575,-80.49894018,42.85215686,Canada,Ontario,Delhi
+4582,-81.0916215,34.36890799,United States,South Carolina,Winnsboro
+4663,150.3077077,-28.53646188,Australia,Queensland,Wyaga
+4666,13.2580939,43.53605182,Italy,Marche,Iesi
+4680,111.3895339,40.70471347,China,Inner Mongolia,Hohhot
+4691,13.84211651,37.36066953,Italy,Sicily,Canicatt¨¬
+4692,-77.58800268,35.6003122,United States,North Carolina,Farmville
+4705,-91.17306163,38.20835449,United States,Missouri,Sullivan
+4724,14.97455378,41.99224687,Italy,Molise,Termoli
+4757,-8.967888879,38.69831016,Portugal,Setubal,Montijo
+4770,-112.8280061,53.01367276,Canada,Alberta,Camrose
+4783,-96.6329081,39.84158896,United States,Kansas,Marysville
+4787,123.4732799,41.13088803,China,Liaoning,Liaoyang
+4831,117.6141001,44.58120003,China,Inner Mongolia,Xilingol League
+4866,13.71733327,37.39692916,Italy,Sicily,
+4898,-94.86873196,42.07119303,United States,Iowa,Carroll
+4916,-94.23289267,39.7453348,United States,Missouri,Cameron
+4940,-92.46774345,39.74297699,United States,Missouri,Macon
+4977,-95.81997053,37.53011563,United States,Kansas,Fredonia
+4990,-88.26954087,42.67466856,United States,Wisconsin,Burlington
+5000,-100.6273096,40.20558441,United States,Nebraska,McCook
+5003,-74.8214256,38.98769507,United States,New Jersey,Wildwood
+5076,-121.9905796,47.85869439,United States,Washington,Monroe
+5147,13.93966784,37.26060756,Italy,Sicily,
+5148,14.86163848,37.65356646,Italy,Sicily,Biancavilla
+5190,-76.93781383,36.67189627,United States,Virginia,Franklin
+5198,-6.410068393,38.68591793,Spain,Extremadura,Almendralejo
+5216,16.27773636,41.3139715,Italy,Apulia,Barletta
+5220,-96.75155858,35.96737708,United States,Oklahoma,Cushing
+5232,-97.23002861,27.60542898,United States,Texas,Corpus Christi
+5235,-84.35838107,46.48029549,United States,Michigan,SAULT S MARIE
+5239,118.6183407,32.39685179,China,Anhui,Chuzhou
+5256,118.1598498,37.79915155,China,Shandong,Binzhou
+5265,12.51649087,41.66953795,Italy,Lazio,Area Produttiva
+5313,-91.35437795,40.62812925,United States,Iowa,Fort Madison
+5315,-94.37729197,44.8860843,United States,Minnesota,Hutchinson
+5348,-93.20089613,39.11373717,United States,Missouri,Napton
+5404,-78.17933202,43.0022302,United States,New York,Batavia
+5405,-36.58922927,-7.066036085,Brazil,State of Para¨ªba,
+5409,13.65833057,37.31554709,Italy,Sicily,Favara
+5413,-92.6358199,38.15006264,United States,Missouri,Osage Beach
+5428,112.5947625,35.46836564,China,Shanxi,Jincheng
+5492,78.21383833,12.52999066,India,Tamil Nadu,Krishnagiri
+5495,-80.90185037,36.67595721,United States,Virginia,Galax
+5510,8.381430228,40.82993373,Italy,Sardinia,Porto Torres
+5511,130.8196955,47.57689729,China,Heilongjiang,Hegang
+5540,-1.122036157,38.18202241,Spain,Region of Murcia,Fortuna
+5541,-78.17332206,35.57129822,United States,North Carolina,Selma
+5598,-94.87224348,40.34691404,United States,Missouri,Maryville
+5617,5.988176256,33.52841444,Algeria,El Oued Province,Djamaa
+5644,-85.08296952,41.3604668,United States,Indiana,Auburn
+5649,5.06439465,34.4308848,Algeria,Biskra Province,Ouled Djellal
+5673,-93.87866475,42.05716403,United States,Iowa,Boone
+5676,14.66114909,41.5676089,Italy,Molise,Campobasso
+5706,-80.22096701,33.69354836,United States,South Carolina,Manning
+5726,125.1910707,45.58452989,China,Heilongjiang,Daqing
+5754,74.53205963,63.79047059,Russia,Yamalo-Nenets Autonomous Okrug,Muravlenko
+5799,-123.1094,47.22749717,United States,Washington,SKOK
+5835,-115.7588827,49.51262726,Canada,British Columbia,Cranbrook
+5886,-120.837892,37.7658946,United States,California,Valley Home
+5890,-90.67012928,40.45975875,United States,Illinois,Macomb
+5897,132.9175346,48.77998548,Russia,Jewish Autonomous Oblast,Birobidzhan
+5899,-81.52613828,33.91072326,United States,South Carolina,Batesburg-Leesville
+5921,-94.89223538,47.482277,United States,Minnesota,Wilton
+5926,152.0271063,-28.21913029,Australia,Queensland,Allan
+6063,-80.24857316,34.20534465,United States,South Carolina,Wisacky
+6092,118.8494374,37.92668437,China,Shandong,Dongying
+6122,-122.9099613,44.53177013,United States,Oregon,Lebanon
+6124,109.9733319,41.78047271,China,Inner Mongolia,Baotou
+6126,124.8522483,48.47547624,China,Heilongjiang,Qiqihar
+6169,-79.76146603,33.86621236,United States,South Carolina,Lake City
+6174,106.6479529,39.15676968,China,Ningxia,Shizuishan
+6187,-83.77024202,31.96486177,United States,Georgia,Cordele
+6218,76.32286889,29.31554935,India,Haryana,Julani
+6261,14.80047214,41.11566272,Italy,Campania,Benevento
+6277,-82.01469334,33.09237141,United States,Georgia,Waynesboro
+6308,44.64330244,43.74976373,Russia,North Ossetia¨CAlania Republic,Mozdok
+6342,-113.147897,53.75502248,Canada,Alberta,Fort Saskatchewan
+6353,-85.88388824,38.95417325,United States,Indiana,Seymour
+6361,-91.54451136,40.96656643,United States,Iowa,Mount Pleasant
+6377,-95.38975352,37.92495835,United States,Kansas,Iola
+6383,-85.40552636,44.25347561,United States,Michigan,Cadillac
+6396,1.270923959,41.29403224,Spain,Catalonia,Valls
+6407,-80.48170174,33.47523671,United States,South Carolina,Santee
+6421,-95.7154596,37.22339753,United States,Kansas,Independence
+6431,-78.70762881,34.31917872,United States,North Carolina,Whiteville
+6432,-100.9256908,37.04317638,United States,Kansas,Liberal
+6507,123.4147902,46.39110311,China,Heilongjiang,Qiqihar
+6536,14.43793973,36.89878388,Italy,Sicily,Scoglitti
+6565,-71.59643586,-16.50506838,Peru,Arequipa,Jacobo Hunter
+6575,39.919231,48.0432955,Russia,Rostov Oblast,Gukovo
+6581,16.29417442,38.27230112,Italy,Calabria,Siderno
+6639,-81.99799405,34.51247941,United States,South Carolina,Laurens
+6670,12.9402476,38.00334113,Italy,Sicily,
+6692,-92.57649444,40.1934054,United States,Missouri,Kirksville
+6708,-95.26638379,37.34469895,United States,Kansas,Parsons
+6714,-96.12507381,41.52756972,United States,Nebraska,Blair
+6718,-94.35080009,38.64177064,United States,Missouri,Harrisonville
+6761,-84.22313314,40.04136039,United States,Ohio,Troy
+6774,-77.79096343,48.09385602,Canada,Quebec,Val-d'Or
+6794,13.61595665,37.35616941,Italy,Sicily,Zona Industriale Aragona - Favara
+6804,5.427333033,34.72712795,Algeria,Biskra Province,Lichana
+6807,176.8245514,-39.63091623,New Zealand,Hawke's Bay,Hastings
+6809,-122.9676227,45.30101683,United States,Oregon,Newberg
+6823,141.766586,43.19834773,Japan,Hokkaido,Iwamizawa
+6877,42.10279079,51.36697493,Russia,Voronezh Oblast,Borisoglebsk
+6881,-88.0470585,45.81092706,United States,Michigan,Iron Mountain
+6888,104.1328313,56.55407738,Russia,Irkutsk Oblast,Zheleznogorsk-Ilimsky
+6909,112.7970483,30.4165395,China,Hubei,
+6927,12.90017281,41.46235202,Italy,Lazio,Latina
+6936,-89.56606743,36.88444037,United States,Missouri,Miner
+6950,-79.92079276,34.69327783,United States,South Carolina,Cheraw
+6989,-81.71735035,25.93858822,United States,Florida,Marco Island
+7001,118.7956395,37.85622134,China,Shandong,Dongying
+7080,-72.7374608,42.14034998,United States,Massachusetts,Montgomery
+7091,-103.6608045,48.15845265,United States,North Dakota,Williston
+7099,-98.77929717,38.36193095,United States,Kansas,Great Bend
+7186,-96.74559393,40.26757578,United States,Nebraska,Holmesville
+7204,-121.7648062,36.92475836,United States,California,Mount MADONNA
+7212,129.8893446,46.72785968,China,Heilongjiang,Jiamusi
+7217,-77.05165472,35.55774951,United States,North Carolina,Washington
+7225,-92.90751468,42.03202176,United States,Iowa,Marshalltown
+7227,-90.40418367,29.98549983,United States,Louisiana,Hahnville
+7238,-100.8686168,37.97696086,United States,Kansas,Garden City
+7252,112.525734,35.60672608,China,Shanxi,Jincheng
+7266,150.912223,-31.09594076,Australia,New South Wales,Tamworth
+7302,-81.39560916,33.24380153,United States,South Carolina,Kline
+7321,-90.23142509,39.72637148,United States,Illinois,Pisgah
+7349,-82.3372041,32.59662439,United States,Georgia,Covena
+7356,-90.96431487,38.95606604,United States,Missouri,Troy
+7363,-120.5482333,47.0001198,United States,Washington,Ellensburg
+7371,13.42135441,42.05652789,Italy,Abruzzo,
+7379,132.0387918,47.25387806,China,Heilongjiang,Jiamusi
+7416,12.59466188,37.66309757,Italy,Sicily,Mazara del Vallo
+7426,-121.1763495,45.60696687,United States,Washington,Dallesport
+7431,-82.19423683,42.40154941,Canada,Ontario,Chatham
+7437,-92.41363827,41.02059362,United States,Iowa,Ottumwa
+7488,-82.64279084,42.0571697,Canada,Ontario,
+7502,-80.65227256,32.92476294,United States,South Carolina,Walterboro
+7526,-90.72564706,38.48918462,United States,Missouri,Pacific
+7587,23.48964306,51.1358495,Poland,Lublin Voivodeship,Che?m
+7600,124.8281609,44.42676531,China,Jilin,Changchun
+7607,14.02686249,37.47926799,Italy,Sicily,Caltanissetta
+7624,-123.1880712,45.21173332,United States,Oregon,McMinnville
+7701,-93.24289088,38.70233763,United States,Missouri,Sedalia
+7723,-81.90021546,35.33671393,United States,North Carolina,Forest City
+7747,-77.54815523,35.89656469,United States,North Carolina,Leggett
+7763,-76.90550663,34.89791792,United States,North Carolina,Havelock
+7796,-99.32056711,38.8842568,United States,Kansas,Hays
+7810,-95.6133304,37.04765242,United States,Kansas,Coffeyville
+7823,-121.1815064,44.26845926,United States,Oregon,Redmond
+7837,124.8351099,45.58064842,China,Heilongjiang,Daqing
+7840,44.14648474,44.80262833,Russia,Stavropol Krai,Budyonnovsk
+7842,38.12702937,45.25089324,Russia,Krasnodar Krai,Slavyansk-na-Kubani
+7874,111.2362312,39.74877672,China,Inner Mongolia,Ordos City
+7876,43.45046426,44.1513654,Russia,Stavropol Krai,Georgiyevsk
+7892,-97.03280002,37.07137241,United States,Kansas,Parkerfield
+7893,-81.60341441,34.28448535,United States,South Carolina,Newberry
+7904,43.23284756,50.07078324,Russia,Volgograd Oblast,Mikhaylovka
+7929,13.55767049,37.28776471,Italy,Sicily,Villaggio Pirandello
+7948,-96.19983544,38.41047757,United States,Kansas,Emporia
+8007,-103.1460634,32.71874822,United States,New Mexico,Oil Center
+8052,-94.82777276,29.2882477,United States,Texas,Galveston
+8092,-97.34715582,38.04064141,United States,Kansas,Newton
+8093,122.7988301,45.33717279,China,Jilin,Baicheng
+8114,-100.7819074,41.13009203,United States,Nebraska,North Platte
+8120,-79.33993919,34.18196378,United States,South Carolina,Mullins
+8123,-97.34166994,41.43166628,United States,Nebraska,Columbus
+8137,-94.72657814,31.33743328,United States,Texas,Lufkin
+8142,69.58691536,40.84607551,Uzbekistan,Tashkent Region,Almalyk
+8151,76.87541112,52.07433349,Kazakhstan,Pavlodar Region,Aksu
+8163,4.53046259,35.71062648,Algeria,M'Sila Province,M'Sila
+8187,-90.21380237,41.83613566,United States,Iowa,Clinton
+8196,142.1582708,-34.19994526,Australia,Victoria,Mildura
+8266,76.16082151,28.79860773,India,Haryana,Nandgaon
+8274,137.5559437,-33.01975378,Australia,South Australia,Whyalla
+8286,17.22114991,40.49266286,Italy,Apulia,Taranto
+8330,-81.88881961,31.62205227,United States,Georgia,Jesup
+8339,87.81849152,44.13864027,China,Xinjiang,Changji Hui Autonomous Prefecture
+8341,-79.89149351,36.6933601,United States,Virginia,Martinsville
+8345,-78.38506178,33.96803475,United States,North Carolina,South Brunswick
+8369,-76.79989404,34.7420232,United States,North Carolina,Morehead City
+8385,-96.49373575,41.43933801,United States,Nebraska,Inglewood
+8395,-84.32276873,46.52926965,Canada,Ontario,Sault Ste. Marie
+8421,-96.97512383,28.82621833,United States,Texas,Victoria
+8437,-75.99738314,40.9521024,United States,Pennsylvania,Pardeesville
+8449,76.97038103,29.39419034,India,Haryana,Kurar
+8455,-81.65653224,35.08067098,United States,South Carolina,Gaffney
+8469,67.69977223,47.78786961,Kazakhstan,Ulytau Region,Zhezqazghan
+8474,114.6469196,-28.78147737,Australia,Western Australia,Meru
+8483,-91.37262789,39.93680971,United States,Illinois,Quincy
+8509,-80.75933553,34.69994135,United States,South Carolina,Lancaster
+8529,-97.60943638,38.81902358,United States,Kansas,Bavaria
+8539,14.52768031,36.9569816,Italy,Sicily,Vittoria
+8544,-123.0897648,44.62804211,United States,Oregon,Albany
+8558,-97.23614557,27.89447667,United States,Texas,Ingleside
+8566,29.14827162,-26.55243991,South Africa,Mpumalanga,Secunda
+8574,-80.07974543,34.37609181,United States,South Carolina,Hartsville
+8576,-82.3791007,32.21067035,United States,Georgia,Vidalia
+8578,-87.66073156,44.11109576,United States,Wisconsin,Manitowoc
+8621,-79.18604342,34.68426449,United States,North Carolina,Pembroke
+8633,-76.58758097,36.74370677,United States,Virginia,Suffolk
+8635,76.61671984,28.88740867,India,Haryana,Bhali Anandpur
+8651,-90.72405764,29.59762224,United States,Louisiana,Houma
+8676,-79.24951829,42.96968748,Canada,Ontario,Welland
+8702,-81.78320766,32.42962333,United States,Georgia,Statesboro
+8713,-80.60982128,28.20987869,United States,Florida,IND HBR BCH
+8718,5.727839443,34.83885348,Algeria,Biskra Province,Biskra
+8725,-77.61443619,35.27550309,United States,North Carolina,Kinston
+8751,-97.08585936,47.92449336,United States,North Dakota,Grand Forks
+8774,-97.40989257,42.03064865,United States,Nebraska,Hadar
+8776,75.74342605,29.14606525,India,Haryana,Hisar
+8787,-77.65396366,36.45076834,United States,North Carolina,RONOK RPD AFS
+8792,-121.7624109,42.20655697,United States,Oregon,Klamath Falls
+8799,-80.62691503,34.24694883,United States,South Carolina,Camden
+8842,113.9954521,32.46028933,China,Henan,Xinyang
+8848,-78.60235296,35.32518197,United States,North Carolina,Dunn
+8885,-79.02921878,34.62833894,United States,North Carolina,Lumberton
+8893,-122.9433455,46.13802181,United States,Washington,Longview
+8913,-87.0161909,34.59597182,United States,Alabama,Decatur
+8929,-80.8629133,33.4945787,United States,South Carolina,Orangeburg
+8955,7.725531525,36.84296167,Algeria,Annaba Province,El Bouni
+8990,-80.87649871,35.7975098,United States,North Carolina,Statesville
+9009,-82.35846073,31.22126956,United States,Georgia,Waycross
+9013,-82.1548944,34.20093913,United States,South Carolina,Greenwood
+9015,64.4583018,39.7596028,Uzbekistan,Bukhara Region,Bukhara
+9021,-79.73709285,34.91853182,United States,North Carolina,Rockingham
+9027,-92.20983905,38.57081799,United States,Missouri,Jefferson City
+9049,-106.3335232,42.8427897,United States,Wyoming,Bar Nunn
+9051,-81.49581576,31.21684275,United States,Georgia,Brunswick
+9055,-79.39946808,36.58837183,United States,Virginia,Danville
+9056,-95.26474189,38.95729776,United States,Kansas,Lawrence
+9059,76.96610918,52.318137,Kazakhstan,Pavlodar Region,Pavlodar
+9077,35.72583151,31.15418818,Jordan,Karak Governorate,Kerak
+9097,117.3721783,38.65916484,China,Tianjin,Tianjin
+9124,-96.81394407,39.05809702,United States,Kansas,Junction City
+9136,-100.44957,31.44937033,United States,Texas,Grape Creek
+9138,-79.43120276,35.17186365,United States,North Carolina,Pinehurst
+9151,-120.5250425,37.32865463,United States,California,Merced
+9171,-101.4261696,26.88159053,Mexico,Coahuila,Monclova
+9188,-81.48100825,27.52532022,United States,Florida,Sebring
+9191,-75.14954581,3.272138305,Colombia,Huila,
+9201,51.90670756,47.11249387,Kazakhstan,Atyrau Region,Atyrau
+9219,71.38099119,42.89080762,Kazakhstan,Jambyl Region,Taraz
+9223,-94.8370705,39.76823312,United States,Missouri,Saint Joseph
+9292,-77.92844885,35.73592359,United States,North Carolina,Wilson
+9307,34.80463664,31.28219912,Israel,South District,Be'er Sheva
+9309,77.33822258,11.11401774,India,Tamil Nadu,Tiruppur
+9315,130.3297801,46.80273031,China,Heilongjiang,Jiamusi
+9348,47.12677395,31.82368903,Iraq,Maysan Governorate,Amarah
+9352,9.128242741,39.26447533,Italy,Sardinia,Monserrato
+9399,-80.99618099,46.48639085,Canada,Ontario,Greater Sudbury
+9414,117.3322878,38.40278819,China,Hebei,Cangzhou
+9416,75.39105447,51.70052896,Kazakhstan,Pavlodar Region,Ekibastuz
+9436,-80.39354433,33.92091902,United States,South Carolina,Oswego
+9437,-78.00512303,35.37989222,United States,North Carolina,Goldsboro
+9438,-77.36557381,35.5920502,United States,North Carolina,Greenville
+9439,-77.8354563,35.96302718,United States,North Carolina,WESLEYAN COL
+9481,-94.50493536,37.10234706,United States,Missouri,Joplin
+9495,27.87845082,-26.68152297,South Africa,Gauteng,Vereeniging
+9541,74.58642372,42.87192782,Kyrgyzstan,Bishkek City,Bishkek
+9604,-95.68514332,39.0368345,United States,Kansas,Topeka
+9608,-79.81567936,34.21842397,United States,South Carolina,Florence
+9635,-96.67520796,40.80923502,United States,Nebraska,Lincoln
+9731,-78.89963606,33.75985809,United States,South Carolina,Myrtle Beach
+9736,-90.08230631,29.95288352,United States,Louisiana,New Orleans
+9747,-78.97270775,35.058625,United States,North Carolina,Fayetteville
+9791,35.97825269,31.95784553,Jordan,Amman Governorate,Amman
+9801,-97.29723615,37.67072253,United States,Kansas,Wichita
+9810,-81.07542499,34.00886552,United States,South Carolina,Columbia
+9815,-82.20160947,34.88435792,United States,South Carolina,Greer
