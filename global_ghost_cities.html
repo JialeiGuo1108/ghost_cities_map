@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Ghost City Map</title>
+    
+    <link rel='icon' type='image/png' href="https://imgproxy.attic.sh/8fF1KnYs2eZwlTpACC0kNo6MzIu_QejmUdEN7_Q52xY/rs:fit:128:128:1:1/t:1:FF00FF:false:false/pngo:false:true:256/aHR0cHM6Ly9hdHRp/Yy5zaC9icGd3bmRw/aGlzdGFyMGVidm42/eHZscmxudjRu.png">
+    
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+    
+    <!--Load the chart libraries and also add D3-->
+    <script charset="utf-8" src="https://d3js.org/d3.v4.min.js"></script>
+    <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"></script>   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: black;
+            font-family: "Open Sans", sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+
+        /* title */
+        .app-header {
+            text-transform:uppercase;
+            padding: 5px;
+            text-align: center;
+            font-size: 1.5rem;
+            background-color: #444;
+        }
+
+        .country-selector {
+            position: absolute;
+            right: 15px;
+            top: 15px;;
+            width: 250px;
+            z-index: 100;
+        }
+        
+        .country-dropdown {
+            width: 100%;
+            padding: 8px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #FFB200;
+            border-radius: 4px;
+        }
+        
+        .country-dropdown:focus {
+            outline: none;
+            border-color: #FFB200;
+        }
+        
+        /* body */
+        .app-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* two sides */
+        .sidebar {
+            width:25%;
+            flex: 1;
+            padding:10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+            height: 100%;
+            overflow-y: auto; 
+        }
+        
+        
+        
+        
+        .section-title{
+            color:rgba(255,255,255,0.8);  
+            font-size:20px;
+            line-height:1.8rem;
+            margin-top: -1rem;
+        }
+        
+          
+        .secondary-text{
+            color:rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+        
+        .countries-list{
+            height: 52%;
+            font-size:0.9rem;
+            margin-top: 10px;
+            padding: 5px
+        }
+        
+        .country-progress {
+            width: 130%;
+            background-color: black;
+            margin-bottom: 0.7rem; 
+        }
+        
+        .icon-and-title interactive{
+            font-size: 7px
+        }
+        
+        .country-progress-bar {
+            display: block;
+            height: 10px;
+            background-color: #FFB200;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+
+        
+
+        .data-source {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* map */
+        .live-map {
+            flex: 3;
+            text-align: center;
+            font-size: 1.5rem;
+            height:100%
+        }
+        
+        .map-container-outer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .city-popup {
+            background: rgba(94, 104, 109, 0.8);
+            border: 1px solid #FFB200;
+            border-radius: 4px;
+            color:rgba(255,255,255);
+        }
+        
+        .mapboxgl-popup-content {
+            background: transparent;
+            box-shadow: none;
+            padding: 10px;
+        }
+        
+        .mapboxgl-popup-tip {
+            border-top-color: #FFB200 !important;
+        }
+        
+        .popup-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 14px
+        }
+        
+        .popup-content p {
+            margin: 0;
+            font-size: 12px;
+        }
+        
+        
+        .map-legend {
+            position: absolute;
+            bottom: 30px; /* 距离底部的距离 */
+            left: 0; 
+            background: rgba(255,255,255,0.9);
+            border-radius: 4px;
+            padding: 10px;
+            z-index: 10;
+            font-size: 12px;
+            width: auto;
+            min-width: 120px;
+        }
+        
+        .map-legend-item {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            color: black;
+        }
+        
+        .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        /* chart*/
+        .sidebar canvas {
+            max-width: 100%;
+            height: 70px !important; /* fixed height */
+        }
+        
+        .section-title {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        
+        /*map swith*/
+        .map-switch-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        .map-switch-btn {
+            padding: 10px 15px;
+            background-color: #7D7C7C;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .map-switch-btn:hover {
+            background: #FFCA3A;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+        
+        .map-switch-btn.active { 
+            background-color: #FF9800;
+            color: white;
+        }
+        
+         /*chart swith*/
+        .chart-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            margin-top:10px
+        }
+        
+        .chart-btn {
+            padding: 8px 12px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: calc(50% - 8px);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        .chart-btn:hover {
+            background-color: #444;
+        }
+        
+        .chart-btn.active {
+            background-color: #FFB200;
+            color: black;
+            border-color: #FFB200;
+        }
+        
+        .chart-container {
+            flex: 1;
+            position: relative;
+            margin-top: 8px;
+            min-height: 280px; /* 设置最小高度确保有足够空间 */
+        }
+        
+        
+        .chart-panel {
+            display: none;
+            position: absolute;
+            top: 5;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .chart-panel.active {
+            display: block;
+        }
+
+        /* chart style */
+        .chart-panel canvas {
+            width: 100%;
+            height: 250px !important;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+            font-size: 12px;
+            color:white;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <div class='app-title'></div>
+        <div class='app-title' style="color: white; text-shadow:none;">Global Ghost Cities Map</div>
+        <div class='city-number' style="color:#FFB200 ; text-shadow:none;font-size:16px"> 
+            442 GHOSTS CITIES</div>
+        
+<div class="country-selector">
+<select id="country-dropdown" class="country-dropdown">
+    <option value="">Select Country with Ghost Cities</option>
+    <option value="algeria">Algeria</option>
+    <option value="argentina">Argentina</option>
+    <option value="australia">Australia</option>
+    <option value="belarus">Belarus</option>
+    <option value="bolivia">Bolivia</option>
+    <option value="brazil">Brazil</option>
+    <option value="canada">Canada</option>
+    <option value="china">China</option>
+    <option value="colombia">Colombia</option>
+    <option value="france">France</option>
+    <option value="india">India</option>
+    <option value="iran">Iran</option>
+    <option value="iraq">Iraq</option>
+    <option value="israel">Israel</option>
+    <option value="italy">Italy</option>
+    <option value="japan">Japan</option>
+    <option value="jordan">Jordan</option>
+    <option value="kazakhstan">Kazakhstan</option>
+    <option value="kyrgyzstan">Kyrgyzstan</option>
+    <option value="malaysia">Malaysia</option>
+    <option value="mexico">Mexico</option>
+    <option value="new_zealand">New Zealand</option>
+    <option value="peru">Peru</option>
+    <option value="poland">Poland</option>
+    <option value="portugal">Portugal</option>
+    <option value="russia">Russia</option>
+    <option value="south_africa">South Africa</option>
+    <option value="spain">Spain</option>
+    <option value="turkiye">Türkiye</option>
+    <option value="ukraine">Ukraine</option>
+    <option value="united_states">United States</option>
+    <option value="uzbekistan">Uzbekistan</option>
+</select>
+</div>
+    </div>
+        
+    
+    
+    <div class="app-body">
+        <div class="sidebar">
+        <div class='section-title'>URBAN VITALITY INDEX</div>
+        <div class='secondary-text'>The Urban Vitality Index evaluates the vitality of cities using metrics like density of road network, density of points of interest (POIs), and population density. This indicator helps to distinguish between new and ancient urban areas.</div>
+            
+        
+        <div class="chart-buttons"> 
+        <div class="chart-buttons">
+        <button id="roadDensityBtn" class="chart-btn active">Road density</button>
+        <button id="poiDensityBtn" class="chart-btn">POIs density</button>
+        <button id="populationDensityBtn" class="chart-btn">Population density</button>
+        <button id="landAreaBtn" class="chart-btn">Land area</button>
+        </div>
+        <div class="chart-container">
+        <div id="roadDensityContainer" class="chart-panel active">
+            <canvas id="roadDensityChart"></canvas>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: #FFE6A5;"></div>Old</div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #FFBF61;"></div>New</div>
+            </div>
+        </div>
+
+        <div id="poiDensityContainer" class="chart-panel">
+            <canvas id="poiDensityChart"></canvas>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: #FFCDB2;"></div>Old</div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #B5828C;"></div>New</div>
+            </div>
+        </div>
+        
+        <div id="populationDensityContainer" class="chart-panel">
+            <canvas id="populationDensityChart"></canvas>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: rgba(238, 208, 238);"></div>Old</div>
+                <div class="legend-item"><div class="legend-color" style="background-color: rgba(204, 102, 204);"></div>New</div>
+            </div>
+        </div>
+        
+        <div id="landAreaContainer" class="chart-panel">
+            <canvas id="landAreaChart"></canvas>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: rgba(207, 226, 255);"></div>Old</div>
+                <div class="legend-item"><div class="legend-color" style="background-color: rgba(54, 162, 235);"></div>New</div>
+            </div>
+        </div>
+    </div>
+        <div class='secondary-text' style="text-align: center; font-size: 0.8rem;">
+        AF = Africa, AS = Asia, EU = Europe, SAM = South America, OC = Oceania, NAM = North America
+    </div>
+        </div>
+            
+            
+        <div class='section-title' style='margin-top: 2px'>GHOST CITY INDEX</div>    
+        <div class='secondary-text'>The Ghost City Index (GCI) quantifies the extent to which new urban areas lack vitality compared to older urban areas. </div>
+        <div class="section data-source">
+  <div class="secondary-text" style='padding: 5px'>Data from：
+      <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/" target="_blank">Natural Earth Data; </a>
+      <a href="https://data.mendeley.com/datasets/ypj9s32tn6/1" target="_blank">BCL-Global-Ghost-Cities</a></div>
+    <div class="secondary-text">*Urban Vitality Index(V_new and V_old) and Ghost City Index(GCI): log 10 scale</div>
+</div>
+</div>
+
+         
+        <div class="live-map">
+            <div class='map-container-outer' id="map-container">
+            </div>
+
+        
+        </div>
+        
+        
+        <div class="sidebar">
+            <div class='section-title'>GHOST CITIES</div>
+            <div class='secondary-text'>The identification of ghost cities is based on analysing the vitality disparities between new and old urban areas, computing the Ghost City Index (GCI), and identifying probable ghost cities(top 5%) in regions with low vitality. </div>
+
+        <div class="map-switch-btns">
+            <button id="ghost_city" class="map-switch-btn">Ghost Cities</button>
+            <button id="ghost_city_index" class="map-switch-btn">GCI for cities</button>
+        </div>
+        <div class="map-switch-btns">
+            <button id="vitality_new" class="map-switch-btn">New urban areas</button>
+            <button id="vitality_old" class="map-switch-btn">Old urban areas</button>
+        </div>   
+        <div class='section-title'>TOP 10 COUNTRIES</div>
+        <div class='secondary-text'>Ghost cities in these countries represent difficulties of unequal urban development and differences in the vibrancy of new urban areas, emphasising the challenges of the global urbanisation process. </div>    
+            <div class='section countries-list'>
+                <table class="table table-borderless react-top-att-tar">
+                    <tbody>
+        <!-- United States of America -->
+        <tr>
+         <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇺🇸 United States of America（213）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 100%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- China -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇨🇳 China（53）</span>
+            </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 30%;"></span>
+              </div>
+          </div>
+        </td>
+      </tr>
+      
+      <!-- Italy -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇮🇹 Italy（38）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 21%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- Canada -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇨🇦 Canada（27）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 15%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- Russia -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇷🇺 Russia（16）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 9%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- Spain -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇪🇸 Spain（15）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 8%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- India -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇮🇳 India（13）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 7%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- Kazakhstan -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇰🇿 Kazakhstan（10）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 6%;"></span>
+              </div>
+            </div>
+        </td>
+      </tr>
+      
+      <!-- Australia -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class='icon-and-title interactive'>🇦🇺 Australia（6）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 3%;"></span>
+              </div>
+          </div>
+        </td>
+      </tr>
+      
+      <!-- Poland -->
+      <tr>
+        <td>
+          <div class="top-target-entity">
+              <span class="icon-and-title interactive">🇵🇱 Poland（6）</span>
+          </div>
+          <div class="country-bar-and-count">
+              <div class="country-progress">
+                <span class="country-progress-bar" style="width: 3%;"></span>
+              </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+            </div>
+            
+        </div>
+        
+</div>
+    
+    
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiamlhbGVpZ3VvIiwiYSI6ImNtNjU3OThuOTF4dmkyaXNjNHkxZmFyeWoifQ.EVI-Bwa55SwYaKPRf21Wog';
+
+        // define different map styles
+  const newUrbanMapStyle = 'mapbox://styles/jialeiguo/cm852xcm4000001s04f4uguqu/draft'; 
+  const oldUrbanMapStyle = 'mapbox://styles/jialeiguo/cm854le1f004r01se7dztd90r/draft'; 
+  const gciMapStyle = 'mapbox://styles/jialeiguo/cm83i0aup001601s86azx6t2w'; 
+  const ghostCityMapStyle = 'mapbox://styles/jialeiguo/cm83i0aup001601s86azx6t2w';
+    
+    const ghostCityLegend = `
+    <div class="map-legend-item"><span class="dot" style="background-color:#2b83ba;"></span> -7.9~-3.8 (20%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#abdda4;"></span> -3.7~-2.8(40%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#ffffbf;"></span> -2.7~-1.8 (60%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#fdae61;"></span> -1.7~-0.6 (80%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#d7191c;"></span> -0.5~4.7(100%)</div>
+    `;
+    
+    const gciLegend = `
+    GCI(log10)
+    <div class="map-legend-item"><span class="dot" style="background-color:#2b83ba;"></span> -7.9~-3.8 (20%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#abdda4;"></span> -3.7~-2.8(40%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#ffffbf;"></span> -2.7~-1.8 (60%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#fdae61;"></span> -1.7~-0.6 (80%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#d7191c;"></span> -0.5~4.7(100%)</div>
+  `;
+    
+    const newMapLegend = `
+    V_new(log10)
+    <div class="map-legend-item"><span class="dot" style="background-color:#2b83ba;"></span> -0.9~1.5 (20.2%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#abdda4;"></span> 1.6~3.0(40.3%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#ffffbf;"></span> 3.1~4.5(60.5%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#fdae61;"></span> 4.6~6.0(80.7%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#d7191c;"></span> 6.1~7.5(100%)</div>
+  `;
+    
+    const oldMapLegend = `
+    V_old(log10)
+    <div class="map-legend-item"><span class="dot" style="background-color:#2b83ba;"></span> -2.1~1.5 (18.4%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#abdda4;"></span> 1.6~3.0 (36.8%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#ffffbf;"></span> 3.1~4.5 (55.1%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#fdae61;"></span> 4.6~6.0 (73.5%)</div>
+    <div class="map-legend-item"><span class="dot" style="background-color:#d7191c;"></span> 6.1~7.5 (100%)</div>
+  `;
+    
+	var map = new mapboxgl.Map({
+		container: 'map-container', // container id
+		style: 'mapbox://styles/jialeiguo/cm83i0aup001601s86azx6t2w', // stylesheet location
+		center: [17.306,53.336], // starting position [lng, lat]
+		zoom: 1.8,// starting zoom
+	});
+    
+    // functions
+    // update map legend
+  function updateMapLegend(legendContent) {
+    const legendContainer = document.querySelector('.map-legend');
+    if (legendContainer) {
+      legendContainer.innerHTML = legendContent;
+    }
+  }
+    
+    
+  // 改进后的图层管理系统
+let currentActiveLayer = null; // 跟踪当前活动的图层
+
+// 清除所有图层函数
+function clearAllLayers() {
+    // 移除可能存在的图层
+    if (map.getLayer('ghost_cities_with_indexs_log-aumx0g')) {
+        map.removeLayer('ghost_cities_with_indexs_log-aumx0g');
+    }
+    
+    if (map.getLayer('Total_data_in_the_paper-8rn3rs')) {
+        map.removeLayer('Total_data_in_the_paper-8rn3rs');
+    }
+    
+    // 可以添加其他需要移除的图层
+}  
+    
+    
+    
+    // add ghost cities
+function addGhostCityLayer() {
+    // 检查源是否已存在
+    if (!map.getSource('ghost_cities_with_indexs_log-aumx0g')) {
+        map.addSource('ghost_cities_with_indexs_log-aumx0g', {
+            'type': 'vector',
+            'url': 'mapbox://jialeiguo.c4c4pt36'
+        });
+    }
+    
+    // 检查图层是否已存在
+    if (!map.getLayer('ghost_cities_with_indexs_log-aumx0g')) {
+        map.addLayer({
+            'id': 'ghost_cities_with_indexs_log-aumx0g',
+            'type': 'circle',
+            'source': 'ghost_cities_with_indexs_log-aumx0g',
+            'source-layer': 'ghost_cities_with_indexs_log-aumx0g',
+            'paint': {
+                // 圆的半径根据GCI值变化
+            'circle-radius': [
+                'interpolate', ['linear'], ['get', 'GCI'],
+                0, 5,
+                50, 15,
+                100, 25
+            ],
+            // 颜色也根据GCI值渐变
+            'circle-color': [
+                'interpolate', ['linear'], ['get', 'GCI'],
+                0, '#FFD700',   // GCI低值为金色
+                50, '#FFA500',  // 中等值为橙色
+                100, '#FF4500'  // 高值为红橙色
+            ],
+            // 透明度
+            'circle-opacity': 0.8,
+            // 边框
+            'circle-stroke-width': 1,
+            'circle-stroke-color': 'white',
+            // 模拟3D效果
+            'circle-pitch-alignment': 'map',
+            'circle-pitch-scale': 'map'
+            }
+        });
+        
+        // 重新添加鼠标交互
+        addMouseInteractionsForGhostCities();
+    }
+}
+    
+    // add total_data layer
+    function addTotalDataLayer() {
+        if (!map.getSource('Total_data_in_the_paper-8rn3rs')) {
+            map.addLayer({
+                'id': 'Total_data_in_the_paper-8rn3rs',
+                'type': 'circle',
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://jialeiguo.693hx12f' 
+                },
+                'source-layer': 'Total_data_in_the_paper-8rn3rs', 
+                'paint': {
+                    'circle-radius': ['interpolate', ['linear'],  ['zoom'],
+                    0, 2,    
+                    20, 10],
+                    'circle-color': [
+                        'interpolate', ['linear'], ['get', 'GCL(log)'],
+                        -7.9, '#2b83ba',
+                        -3.7, '#abdda4',
+                        -2.7, '#ffffbf',
+                        -1.7, '#fdae61',
+                        -0.5, '#d7191c'
+                    ]
+                }
+            });
+            
+            addMouseInteractionsForTotalData();
+        }
+    }
+
+    // add mouse interaction to ghost-city layer
+    function addMouseInteractionsForGhostCities() {
+        var mypopup = new mapboxgl.Popup({
+            offset: [0, -7],
+            closeButton: false,
+            className: 'city-popup'
+        });
+        
+        map.on('mouseover', 'ghost_cities_with_indexs_log-aumx0g', function(e) {
+            map.getCanvas().style.cursor = 'pointer';
+            
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var properties = e.features[0].properties;
+            
+            var city = properties.city || 'Unknown City';
+            var country = properties.country || 'Unknown Country';
+            var continent = properties.CONTINENT || 'Unknown Continent';
+            var gci = properties.GCI || 'N/A';
+            var V_new = properties.V_new || 'N/A';
+            var V_old = properties.V_old || 'N/A';
+            
+            var popupHTML = `
+                <div class="popup-content">
+                    <h3>${city}</h3>
+                    <p>Country: ${country}</p>
+                    <p>Continent: ${continent}</p>
+                    <p>GCI: ${gci}</p>
+                    <p>V_new: ${V_new}</p>
+                    <p>V_old ${V_old}</p>
+                </div>
+            `;
+            
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+            
+            mypopup
+                .setLngLat(coordinates)
+                .setHTML(popupHTML)
+                .addTo(map);
+        });
+        
+        map.on('mouseleave', 'ghost_cities_with_indexs_log-aumx0g', function() {
+            map.getCanvas().style.cursor = '';
+            mypopup.remove();
+        });
+    }
+    
+    // // add mouse interaction to total-data layer
+    function addMouseInteractionsForTotalData() {
+        var tdpopup = new mapboxgl.Popup({
+            offset: [0, -7],
+            closeButton: false,
+            className: 'city-popup'
+        });
+        
+        map.on('mouseover', 'Total_data_in_the_paper-8rn3rs', function(e) {
+            map.getCanvas().style.cursor = 'pointer';
+            
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var properties = e.features[0].properties;
+            
+            var id = properties.OID_ || 'Unknown id';
+            var GCLlog = properties.GCI || 'N/A';
+            var V_new = properties.V_new || 'N/A';
+            var V_old = properties.V_old || 'N/A';
+            
+            var popupHTML = `
+                <div class="popup-content">
+                    <h3>City_id:${id}</h3>
+                    <p>GCI: ${GCLlog}</p>
+                    <p>V_new: ${V_new}</p>
+                    <p>V_old ${V_old}</p>
+                </div>
+            `;
+            
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+            
+            tdpopup
+                .setLngLat(coordinates)
+                .setHTML(popupHTML)
+                .addTo(map);
+        });
+        
+        map.on('mouseleave', 'Total_data_in_the_paper-8rn3rs', function() {
+            map.getCanvas().style.cursor = '';
+            tdpopup.remove();
+        });
+    }
+    
+
+map.on('load', function() {
+    console.log("Map loaded");
+
+    addGhostCityLayer();//add ghost-cities layer
+
+    
+    console.log("Ghost cities layer added successfully");
+    
+    // set the popup style and behavior
+    var mypopup = new mapboxgl.Popup({
+        offset: [0, -7],  
+        closeButton: false,
+        className: 'city-popup'
+    });
+    
+    // add mouse hover event
+    map.on('mouseover', 'ghost_cities_with_indexs-7w886m', function(e) {
+        map.getCanvas().style.cursor = 'pointer';
+        
+        // gets coordinates and properties
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var properties = e.features[0].properties;
+        
+        var city = properties.city || 'Unknown City';
+        var country = properties.country || 'Unknown Country';
+        var continent = properties.CONTINENT || 'Unknown Continent';
+        var gci = properties.GCI || 'N/A';
+        
+        var popupHTML = `
+            <div class="popup-content">
+                <h3>${city}</h3>
+                <p>Country: ${country}</p>
+                <p>Continent: ${continent}</p>
+                <p>GCI: ${gci}</p>
+            </div>
+        `;
+        
+        // handle date line issues
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        
+        // add pop-ups to the map
+        mypopup
+            .setLngLat(coordinates)
+            .setHTML(popupHTML)
+            .addTo(map);
+    });
+    
+    // remove pop-ups
+    map.on('mouseleave', 'ghost_cities_with_indexs-7w886m', function() {
+        map.getCanvas().style.cursor = '';
+        mypopup.remove();
+    });
+
+    
+    map.on('error', function(e) {
+        console.error("Map error:", e.error);
+    });
+    
+    const legendContainer = document.createElement('div');
+    legendContainer.className = 'map-legend';
+    legendContainer.innerHTML = `
+        <div class="map-legend-item"><span class="dot" style="background-color:#FFD700;"></span> Very Low</div>
+        <div class="map-legend-item"><span class="dot" style="background-color:#FFA500;"></span> Low</div>
+        <div class="map-legend-item"><span class="dot" style="background-color:#FF8C00;"></span> Medium</div>
+        <div class="map-legend-item"><span class="dot" style="background-color:#FF6347;"></span> High</div>
+        <div class="map-legend-item"><span class="dot" style="background-color:#FF4500;"></span> Very High</div>
+    `;
+    
+    // add map legend
+    document.getElementById('map-container').appendChild(legendContainer);
+});
+    
+    document.getElementById('country-dropdown').addEventListener('change', function() {
+  const country = this.value;
+  if(country) {
+    
+    const countryView = {
+      'algeria': {center: [2.6326, 28.0339], zoom: 4.5},
+      'argentina': {center: [-65.1793, -35.3874], zoom: 3.5},
+      'australia': {center: [133.7751, -25.2744], zoom: 3.5},
+      'belarus': {center: [27.9534, 53.7098], zoom: 5.5},
+      'bolivia': {center: [-63.5887, -16.2902], zoom: 5},
+      'brazil': {center: [-51.9253, -14.2350], zoom: 4},
+      'canada': {center: [-106.3468, 56.1304], zoom: 3},
+      'china': {center: [104.1954, 35.8617], zoom: 3.2},
+      'colombia': {center: [-74.2973, 4.5709], zoom: 5},
+      'france': {center: [2.2137, 46.2276], zoom: 5},
+      'india': {center: [78.9629, 20.5937], zoom: 4},
+      'iran': {center: [53.6880, 32.4279], zoom: 4.5},
+      'iraq': {center: [43.6793, 33.2232], zoom: 5.5},
+      'israel': {center: [34.8516, 31.0461], zoom: 6.5},
+      'italy': {center: [12.5674, 41.8719], zoom: 5},
+      'japan': {center: [138.2529, 36.2048], zoom: 4.5},
+      'jordan': {center: [36.2384, 30.5852], zoom: 6},
+      'kazakhstan': {center: [66.9237, 48.0196], zoom: 4},
+      'kyrgyzstan': {center: [74.7661, 41.2044], zoom: 5.6},
+      'malaysia': {center: [101.9758, 4.2105], zoom: 6.2},
+      'mexico': {center: [-102.5528, 23.6345], zoom: 4},
+      'new_zealand': {center: [171.7799, -41.2865], zoom: 4.5},
+      'peru': {center: [-75.0152, -9.1900], zoom: 4.5},
+      'poland': {center: [19.1451, 51.9194], zoom: 5.5},
+      'portugal': {center: [-8.2245, 39.3999], zoom: 6},
+      'russia': {center: [95.3188, 61.5240], zoom: 2.7},
+      'south_africa': {center: [22.9375, -30.5595], zoom: 4.5},
+      'spain': {center: [-3.7492, 40.4637], zoom: 5},
+      'turkiye': {center: [35.2433, 38.9637], zoom: 4.8},
+      'ukraine': {center: [31.1656, 48.3794], zoom: 5},
+      'united_states': {center: [-95.7129, 37.0902], zoom: 3.5},
+      'uzbekistan': {center: [64.5853, 41.3775], zoom: 5}
+    };
+    
+    
+    map.flyTo({
+      center: countryView[country].center,
+      zoom: countryView[country].zoom,
+      essential: true 
+    });
+  }
+});
+
+map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+// change the map view
+document.addEventListener('DOMContentLoaded', function() {
+    
+    //acquire the buttom
+    const vitalityNewBtn = document.getElementById('vitality_new');
+    const vitalityOldBtn = document.getElementById('vitality_old');
+    const ghostCityIndexBtn = document.getElementById('ghost_city_index');
+    const ghostCityBtn = document.getElementById('ghost_city');
+  
+  // 默认设置第一个按钮为激活状态
+  ghostCityBtn.classList.add('active');
+  
+   // 添加这个函数定义
+    function removeActiveClass() {
+        vitalityNewBtn.classList.remove('active');
+        vitalityOldBtn.classList.remove('active');
+        ghostCityIndexBtn.classList.remove('active');
+        ghostCityBtn.classList.remove('active');
+    }
+    
+
+
+    
+    
+    // add click events
+    vitalityNewBtn.addEventListener('click', function() {
+        removeActiveClass();
+        vitalityNewBtn.classList.add('active');
+        
+        map.setStyle(newUrbanMapStyle);
+        
+        map.once('style.load', function() {
+            clearAllLayers();
+            updateMapLegend(newMapLegend);
+        });
+    });
+    
+    vitalityOldBtn.addEventListener('click', function() {
+        removeActiveClass();
+        vitalityOldBtn.classList.add('active');
+        
+        map.setStyle(oldUrbanMapStyle);
+        
+        map.once('style.load', function() {
+            clearAllLayers();
+            updateMapLegend(oldMapLegend);
+        });
+    });
+    
+
+    ghostCityBtn.addEventListener('click', function() {
+        removeActiveClass();
+        ghostCityBtn.classList.add('active');
+        
+        map.setStyle(ghostCityMapStyle);
+        
+        map.once('style.load', function() {
+            console.log("Ghost city map style loaded, adding ghost cities layer");
+            clearAllLayers();
+            updateMapLegend(ghostCityLegend);
+            addGhostCityLayer(); // 添加鬼城图层
+             console.log("Ghost cities layer added successfully after style change");
+        });
+    });
+    
+
+    ghostCityIndexBtn.addEventListener('click', function() {
+        removeActiveClass();
+        ghostCityIndexBtn.classList.add('active');
+        
+        map.setStyle(gciMapStyle);
+        
+        map.once('style.load', function() {
+            clearAllLayers();
+            updateMapLegend(gciLegend);
+            addTotalDataLayer(); // 添加total_data图层
+        });
+    });
+});
+    
+// change the chart
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const buttons = document.querySelectorAll('.chart-btn');
+    const chartPanels = document.querySelectorAll('.chart-panel');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            
+            const chartId = this.id.replace('Btn', 'Container');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            chartPanels.forEach(panel => panel.classList.remove('active'));
+            
+            this.classList.add('active');
+            
+            document.getElementById(chartId).classList.add('active');
+        });
+    });
+});
+
+window.addEventListener('resize', function() {
+    if (window.roadDensityChart) window.roadDensityChart.update();
+    if (window.poiDensityChart) window.poiDensityChart.update();
+    if (window.populationDensityChart) window.populationDensityChart.update();
+    if (window.landAreaChart) window.landAreaChart.update();
+});
+    
+
+function createBarChart(canvasId, labels, oldData, newData, yAxisLabel, colors) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Old',
+                    data: oldData,
+                    backgroundColor: colors[0],
+                    borderColor: colors[0].replace('0.8', '1'),
+                    borderWidth: 1
+                },
+                {
+                    label: 'New',
+                    data: newData,
+                    backgroundColor: colors[1],
+                    borderColor: colors[1].replace('0.8', '1'),
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 5,
+                    bottom: 5
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: yAxisLabel,
+                        font: {
+                            size: 10
+                        }
+                    },
+                    ticks: {
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: 10
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+   
+    window[canvasId.replace('Chart', '') + 'Chart'] = chart;
+    
+    return chart;
+}
+    
+// data of charts
+const chartData = [
+    {
+        "continent": "World",
+        "roadDensity": {
+            "old": 17.48,
+            "new": 7.43
+        },
+        "poiDensity": {
+            "old": 21.39,
+            "new": 4.16
+        },
+        "populationDensity": {
+            "old": 3171,
+            "new": 1224
+        },
+        "landArea": {
+            "old": 48.08,
+            "new": 34.01
+        }
+    },
+    {
+        "continent": "AF",
+        "roadDensity": {
+            "old": 16.23,
+            "new": 10.49
+        },
+        "poiDensity": {
+            "old": 13.13,
+            "new": 2.12
+        },
+        "populationDensity": {
+            "old": 6196,
+            "new": 2895
+        },
+        "landArea": {
+            "old": 59.70,
+            "new": 25.61
+        }
+    },
+    {
+        "continent": "AS",
+        "roadDensity": {
+            "old": 13.78,
+            "new": 5.66
+        },
+        "poiDensity": {
+            "old": 47.48,
+            "new": 1.01
+        },
+        "populationDensity": {
+            "old": 5612,
+            "new": 1607
+        },
+        "landArea": {
+            "old": 37.85,
+            "new": 30.8
+        }
+    },
+    {
+        "continent": "EU",
+        "roadDensity": {
+            "old": 22.84,
+            "new": 10.97
+        },
+        "poiDensity": {
+            "old": 16.81,
+            "new": 6.87
+        },
+        "populationDensity": {
+            "old": 1998,
+            "new": 623.6
+        },
+        "landArea": {
+            "old": 46.54,
+            "new": 21.12
+        }
+    },
+    {
+        "continent": "SAM",
+        "roadDensity": {
+            "old": 20.59,
+            "new": 11.58
+        },
+        "poiDensity": {
+            "old": 6.08,
+            "new": 2.57
+        },
+        "populationDensity": {
+            "old": 5623,
+            "new": 2311
+        },
+        "landArea": {
+            "old": 35.14,
+            "new": 19.82
+        }
+    },
+    {
+        "continent": "NAM",
+        "roadDensity": {
+            "old": 17.51,
+            "new": 7.22
+        },
+        "poiDensity": {
+            "old": 6.17,
+            "new": 1.10
+        },
+        "populationDensity": {
+            "old": 1271,
+            "new": 429.5
+        },
+        "landArea": {
+            "old": 90.15,
+            "new": 36.52
+        }
+    },
+    {
+        "continent": "OC",
+        "roadDensity": {
+            "old": 16.94,
+            "new": 11.05
+        },
+        "poiDensity": {
+            "old": 13.54,
+            "new": 4.43
+        },
+        "populationDensity": {
+            "old": 1218,
+            "new": 519.4
+        },
+        "landArea": {
+            "old": 62.23,
+            "new": 27.00
+        }
+    }
+];
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const labels = chartData.map(item => item.continent);
+    
+    // 创建图表
+    createBarChart('roadDensityChart', labels, 
+        chartData.map(item => item.roadDensity.old),
+        chartData.map(item => item.roadDensity.new),
+        'Density of road network (km/km²)',
+        ['#FFE6A5', '#FFBF61']
+    );
+    
+    createBarChart('poiDensityChart', labels, 
+        chartData.map(item => item.poiDensity.old),
+        chartData.map(item => item.poiDensity.new),
+        'Density of POIs (number/km²)',
+        ['#FFCDB2', '#B5828C']
+    );
+    
+    createBarChart('populationDensityChart', labels, 
+        chartData.map(item => item.populationDensity.old),
+        chartData.map(item => item.populationDensity.new),
+        'Population density (people/km²)',
+        ['rgba(238, 208, 238)', 'rgba(204, 102, 204)']
+    );
+    
+    createBarChart('landAreaChart', labels, 
+        chartData.map(item => item.landArea.old),
+        chartData.map(item => item.landArea.new),
+        'Land area (km²)',
+    ['rgba(207, 226, 255)', 'rgba(54, 162, 235)']
+    );
+    });
+    
+    
+
+    
+</script>
+</body>
+</html>
